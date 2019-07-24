@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-primary mb-2" (click)="generateUsers()">Generate New Users</button>
+        </div>
+    </div>
+    <ng-container *ngIf="users && users.length > 0; else noUsers">
+        <div class="row" *ngFor="let user of users; let i = index">
+            <div class="col-7">
+                <div class="card card-body user-profile" *ngIf="user">
+                    <div class="row">
+                        <div class="col-4 user-image">
+                            <img [src]="user.picture.large" alt="" class="image" />
+                        </div>
+                        <div class="col-6">
+                            <h4>{{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
+                            </h4>
+                            <small><cite>{{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' +user.nat}}<i
+                                        class="glyphicon glyphicon-map-marker">
+                                    </i></cite></small>
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>{{' ' + user.email}}
+                                <br />
+                                <i class="glyphicon glyphicon-globe"></i><a
+                                    href="http://adaheeye.ca" target="_blank">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
+                                <br />
+                                <i
+                                    class="glyphicon glyphicon-gift"></i>{{' ' + (user.dob.date | date: 'longDate') + ' - ' + user.dob.age + ' years old'}}
+                            </p>
+                            <div class="btn-group" *ngIf="!isUserExpanded(user)">
+                                <button type="button" class="btn btn-info mr-1" (click)="expandUser(user)">Expand
+                                    User</button>
+                            </div>
+                            <div class="btn-group" *ngIf="isUserExpanded(user)">
+                                <button type="button" class="btn btn-secondary mr-1" (click)="collapseUser(user)">Collapse
+                                    User</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Remove
+                                    User</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5" *ngIf="!!user && user.isExpanded">
+                <div class="card card-body user-profile-detail">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>
+                                <i class="glyphicon glyphicon-envelope"></i>{{' ' + user.email}}
+                                <br />
+                                <i class="glyphicon glyphicon-globe"></i><a
+                                    href="http://www.jquery2dotnet.com">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
+                                <br />
+                                <i
+                                    class="glyphicon glyphicon-gift"></i>{{' ' + (user.dob.date | date: 'longDate') + ' - ' + user.dob.age + ' years old'}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #noUsers>
+        <div class="row">
+            <div class="col-6">
+                <div class="card card-body user-profile-detail">
+                        <span>Sorry, No users found</span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

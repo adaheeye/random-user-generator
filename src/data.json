@@ -1,0 +1,166 @@
+{
+    "results": [
+        {
+            "gender": "female",
+            "name": {
+                "title": "ms",
+                "first": "ava",
+                "last": "bélanger"
+            },
+            "location": {
+                "street": "6506 dundas rd",
+                "city": "maidstone",
+                "state": "nunavut",
+                "postcode": "D5R 5D9",
+                "coordinates": {
+                    "latitude": "-66.4682",
+                    "longitude": "143.0364"
+                },
+                "timezone": {
+                    "offset": "-5:00",
+                    "description": "Eastern Time (US & Canada), Bogota, Lima"
+                }
+            },
+            "email": "ava.bélanger@example.com",
+            "login": {
+                "uuid": "32f3a789-4f4f-4970-ad26-63d7aa1932b3",
+                "username": "happygorilla314",
+                "password": "bell",
+                "salt": "8r8KDaxY",
+                "md5": "74e26b8bc86a4178c5d5f6685cb5582a",
+                "sha1": "5953f537c4f05c6e03d9517e08990ccbbbe18414",
+                "sha256": "e49edac8cf5753d8bcfa5102ef9efc4ad1c1169956002ea76cae7339900e32d2"
+            },
+            "dob": {
+                "date": "1988-10-29T07:08:26Z",
+                "age": 30
+            },
+            "registered": {
+                "date": "2010-04-26T12:23:11Z",
+                "age": 9
+            },
+            "phone": "615-217-1948",
+            "cell": "781-879-8186",
+            "id": {
+                "name": "",
+                "value": null
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/65.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/65.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/65.jpg"
+            },
+            "nat": "CA"
+        },
+        {
+            "gender": "female",
+            "name": {
+                "title": "miss",
+                "first": "jennifer",
+                "last": "bijvank"
+            },
+            "location": {
+                "street": "5449 waterlinieweg",
+                "city": "werkendam",
+                "state": "utrecht",
+                "postcode": 16959,
+                "coordinates": {
+                    "latitude": "78.7999",
+                    "longitude": "-19.2064"
+                },
+                "timezone": {
+                    "offset": "-10:00",
+                    "description": "Hawaii"
+                }
+            },
+            "email": "jennifer.bijvank@example.com",
+            "login": {
+                "uuid": "dcd2ccfd-1da1-48a9-afcd-60418eec12e9",
+                "username": "lazyswan764",
+                "password": "underdog",
+                "salt": "k3JflyE3",
+                "md5": "15b0dd0b92a7ca3118da10e012d532c6",
+                "sha1": "13d8fb330a6021c54c6cd19ca84ff69537c737f0",
+                "sha256": "268dc8baa98a5052d3c2da37b1f04125a1161aa5285640675a60478c8b3bc741"
+            },
+            "dob": {
+                "date": "1982-09-26T03:42:58Z",
+                "age": 36
+            },
+            "registered": {
+                "date": "2002-08-05T07:49:49Z",
+                "age": 16
+            },
+            "phone": "(277)-095-6866",
+            "cell": "(273)-578-3711",
+            "id": {
+                "name": "BSN",
+                "value": "60761891"
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/0.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/0.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/0.jpg"
+            },
+            "nat": "NL"
+        },
+        {
+            "gender": "female",
+            "name": {
+                "title": "mrs",
+                "first": "مهرسا",
+                "last": "احمدی"
+            },
+            "location": {
+                "street": "3727 قدس",
+                "city": "ورامین",
+                "state": "مازندران",
+                "postcode": 96985,
+                "coordinates": {
+                    "latitude": "-75.1295",
+                    "longitude": "-112.7284"
+                },
+                "timezone": {
+                    "offset": "+7:00",
+                    "description": "Bangkok, Hanoi, Jakarta"
+                }
+            },
+            "email": "مهرسا.احمدی@example.com",
+            "login": {
+                "uuid": "67de7dbb-004c-4c0e-8ada-a4b58bd5c21b",
+                "username": "lazyzebra328",
+                "password": "lover",
+                "salt": "7aC1wpT3",
+                "md5": "b3ed5dbf88a0ac662f98a1556eff1709",
+                "sha1": "08050efada912dc8df9595d587b169bdb8e42715",
+                "sha256": "3554b0c6794f6c67fbe73217cf9b9736b5a31e2f89cd81447f17fc396bec9af5"
+            },
+            "dob": {
+                "date": "1949-08-02T20:27:10Z",
+                "age": 69
+            },
+            "registered": {
+                "date": "2010-03-20T21:35:12Z",
+                "age": 9
+            },
+            "phone": "050-09014792",
+            "cell": "0906-518-1532",
+            "id": {
+                "name": "",
+                "value": null
+            },
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/38.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/38.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/38.jpg"
+            },
+            "nat": "IR"
+        }
+    ],
+    "info": {
+        "seed": "54788f66640e5595",
+        "results": 3,
+        "page": 1,
+        "version": "1.2"
+    }
+}
