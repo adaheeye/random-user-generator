@@ -9,7 +9,7 @@ import { User } from './app/user-profile.model';
 })
 export class UserService {
 
-  private readonly resourceUrl = 'https://randomuser.me/api/?results=20';
+  private readonly resourceUrl = 'https://randomuser.me/api/?results=10';
   private subject = new Subject<any>();
   constructor(private http: HttpClient) {}
 

@@ -1,5 +1,13 @@
 .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
 
+.user-generator-button {
+    background-color: lightcyan;
+    border-color: aquamarine;
+    border-width: medium;
+    float: right;
+    color: black;
+    font-weight: 400;
+}
 
 .user-profile {
     border-color: #999;
@@ -8,6 +16,10 @@
         img {
             width: 100%;
         }
+    }
+
+    .action-buttons {
+        margin-top: 15px;
     }
 
     small {
@@ -21,5 +33,7 @@
 .user-profile-detail {
     border-color: #999;
     background-color: #f1f1f1;
+    min-height: 230px;
+    margin-bottom: 3px;
 }
 
