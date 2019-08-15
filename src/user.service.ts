@@ -13,9 +13,9 @@ export class UserService {
   private subject = new Subject<any>();
   constructor(private http: HttpClient) {}
 
-  public getUsers(): Observable<User[]> {
+  public getUsers(): Observable<any> {
     return this.http.get(this.resourceUrl).pipe(
-      map((res: Response) => <User[]>res.results
+      map((res: Response) => res
       ));
   }
 }

@@ -23,9 +23,9 @@ export class UserProfileComponent implements OnInit {
   public getUserProfiles() {
     this.userService.getUsers().subscribe((users) => {
       if (!!users) {
-        this.users = users
+        this.users = users.results as User[];
       }
-    })
+    });
   }
 
   public expandUser(user: User): void {
