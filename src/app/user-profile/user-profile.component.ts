@@ -28,10 +28,6 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  public removeAllUsers(): void {
-    this.users = null;
-  }
-
   public expandUser(user: User): void {
     if (this.previousExpandedUser) {
       this.previousExpandedUser.isExpanded = false;
