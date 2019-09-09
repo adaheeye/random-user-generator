@@ -12,6 +12,7 @@
 .user-profile {
     border-color: #999;
     background-color: #f1f1f1;
+    height: 100%;
     .user-image {
         img {
             width: 100%;
@@ -27,7 +28,7 @@
         line-height: 1.428571429;
         color: #999;
     }
-    
+
 }
 
 .user-profile-detail {
@@ -37,3 +38,7 @@
     margin-bottom: 3px;
 }
 
+.flag {
+  width: 18px;
+  height: 16px;
+}
