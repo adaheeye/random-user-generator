@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user-profile.model';
+import { Country } from '../countries.model'
 import { UserService } from 'src/user.service';
+import { CountriesService } from 'src/countries.service'
 
 @Component({
   selector: 'user-profile',
@@ -13,11 +15,18 @@ export class UserProfileComponent implements OnInit {
   public users: User[];
   private currentExpandedUser: User;
   private previousExpandedUser: User;
-  constructor(private userService: UserService) { }
+  public countries: Country[];
+  public userCountry: Country;
+
+  constructor(private userService: UserService, private countriesService: CountriesService) { }
 
   public ngOnInit() {
-    this.getUserProfiles();
+    this.load();
+  }
 
+  public load(): void {
+    this.getUserProfiles();
+    this.getCountries();
   }
 
   public getUserProfiles() {
@@ -56,6 +65,18 @@ export class UserProfileComponent implements OnInit {
 
   public generateUsers(): void {
     this.getUserProfiles();
+  }
+
+  public getCountries() {
+    this.countriesService.getCountries().subscribe((countries) => {
+      if (!!countries) {
+        this.countries = countries as Country[];
+      }
+    });
+  }
+
+  public getUserCountry(user: User): Country {
+    return this.countries.find((country: Country) => country.alpha2 === user.nat);
   }
 
 }
