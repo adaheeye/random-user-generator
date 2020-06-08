@@ -1,6 +1,8 @@
 ## Random Users Generator
 
-This app generates 10 random users data. It uses Randomuser.me-Node api https://github.com/RandomAPI/Randomuser.me-Node.
+This app generates 10 random users data. It uses [Randomuser.me-Node api](https://github.com/RandomAPI/Randomuser.me-Node).
+
+App link [random-user-generator](https://abdirahim888.github.io/random-user-generator/)
 
 ## Development server
 
