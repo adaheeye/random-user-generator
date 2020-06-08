@@ -3,7 +3,7 @@ export class User {
     public gender?: string;
     public name: any;
     public login: any;
-    public location: any; 
+    public location: any;
     public dob: any;
     public picture: any;
     public registered: any;

@@ -1,10 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user-profile.model';
-import { UserService } from 'src/user.service';
+import { Country } from '../country/countries.model'
+import { CountriesService } from 'src/app/country/countries.service'
+import { UserProfileService } from './user-profile.service';
 
 @Component({
-  selector: 'user-profile',
+  selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
@@ -13,19 +15,31 @@ export class UserProfileComponent implements OnInit {
   public users: User[];
   private currentExpandedUser: User;
   private previousExpandedUser: User;
-  constructor(private userService: UserService) { }
+  public countries: Country[];
+  public userCountry: Country;
+
+  constructor(private userService: UserProfileService, private countriesService: CountriesService) { }
 
   public ngOnInit() {
-    this.getUserProfiles();
+    this.load();
+  }
 
+  public load(): void {
+    this.getUserProfiles();
+    this.getCountries();
   }
 
   public getUserProfiles() {
-    this.userService.getUsers().subscribe((users) => {
-      if (!!users) {
-        this.users = users.results as User[];
-      }
-    });
+    this.userService.getUsers()
+      .subscribe((users) => {
+        if (!!users) {
+          this.users = users.results as User[];
+        }
+      });
+  }
+
+  public removeAllUsers(): void {
+    this.users = null;
   }
 
   public expandUser(user: User): void {
@@ -52,6 +66,19 @@ export class UserProfileComponent implements OnInit {
 
   public generateUsers(): void {
     this.getUserProfiles();
+  }
+
+  public getUserCountry(user: User): Country {
+    return this.countries.find((country: Country) => country.alpha2 === user.nat);
+  }
+
+  private getCountries() {
+    this.countriesService.getCountries()
+      .subscribe((countries) => {
+        if (!!countries) {
+          this.countries = countries as Country[];
+        }
+      });
   }
 
 }
