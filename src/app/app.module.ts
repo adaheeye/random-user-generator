@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserProfileService } from './user-profile/user-profile.service';
+import { CommonModule } from '@angular/common';
+import { CountriesService } from './country/countries.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,10 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [UserProfileService, CountriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

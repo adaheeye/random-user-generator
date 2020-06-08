@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class CountriesService {
 
   private readonly resourceUrl = './assets/country-icons/countries.json';
-  private subject = new Subject<any>();
   constructor(private http: HttpClient) {}
 
   public getCountries(): Observable<any> {

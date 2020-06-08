@@ -1,12 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user-profile.model';
-import { Country } from '../countries.model'
-import { UserService } from 'src/user.service';
-import { CountriesService } from 'src/countries.service'
+import { Country } from '../country/countries.model'
+import { CountriesService } from 'src/app/country/countries.service'
+import { UserProfileService } from './user-profile.service';
 
 @Component({
-  selector: 'user-profile',
+  selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   public countries: Country[];
   public userCountry: Country;
 
-  constructor(private userService: UserService, private countriesService: CountriesService) { }
+  constructor(private userService: UserProfileService, private countriesService: CountriesService) { }
 
   public ngOnInit() {
     this.load();
@@ -30,11 +30,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   public getUserProfiles() {
-    this.userService.getUsers().subscribe((users) => {
-      if (!!users) {
-        this.users = users.results as User[];
-      }
-    });
+    this.userService.getUsers()
+      .subscribe((users) => {
+        if (!!users) {
+          this.users = users.results as User[];
+        }
+      });
   }
 
   public removeAllUsers(): void {
@@ -67,16 +68,17 @@ export class UserProfileComponent implements OnInit {
     this.getUserProfiles();
   }
 
-  public getCountries() {
-    this.countriesService.getCountries().subscribe((countries) => {
-      if (!!countries) {
-        this.countries = countries as Country[];
-      }
-    });
-  }
-
   public getUserCountry(user: User): Country {
     return this.countries.find((country: Country) => country.alpha2 === user.nat);
+  }
+
+  private getCountries() {
+    this.countriesService.getCountries()
+      .subscribe((countries) => {
+        if (!!countries) {
+          this.countries = countries as Country[];
+        }
+      });
   }
 
 }
