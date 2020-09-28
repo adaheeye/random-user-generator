@@ -4,7 +4,6 @@
     background-color: lightcyan;
     border-color: aquamarine;
     border-width: medium;
-    float: right;
     color: black;
     font-weight: 400;
 }
@@ -43,14 +42,18 @@
   height: 16px;
 }
 
-@media(max-width: 767px) {
+@media(max-width: 767px) and (min-width: 366px) {
     button.user-generator-button {
         padding: 0.0em 0.2em !important;
-        display: inline-block;
     }
 
     button.collapse-btn, button.expand-btn, button.remove-btn {
         padding: 0.2em 0.3em !important;
-        display: inline-block;
+    }
+}
+
+@media(max-width: 365px) {
+    button.collapse-btn, button.expand-btn, button.remove-btn {
+        padding: 0.0em 0.1em !important;
     }
 }

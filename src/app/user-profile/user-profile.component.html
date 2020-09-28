@@ -1,14 +1,13 @@
 <div class="container-fluid px-0">
     <div class="row mb-2">
-        <div class="col-md-6 col-xm-12">
+        <div class="col-12">
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn user-generator-button" (click)="generateUsers()">Reenerate New Users</button>
-                <button type="button" class="btn user-generator-button ml-2" (click)="removeAllUsers()">Remove All Users</button>
-                <button type="button" class="btn user-generator-button ml-2" (click)="expandAllUsers()" *ngIf="!areAllUsersExapnded">Expand All Users</button>
-                <button type="button" class="btn user-generator-button ml-2" (click)="collapseAllUsers()" *ngIf="areAllUsersExapnded">Collapse All Users</button>
+                <button type="button" class="btn user-generator-button mr-1" (click)="generateUsers()">Regenerate New Users</button>
+                <button type="button" class="btn user-generator-button mr-1" (click)="removeAllUsers()">Remove All Users</button>
+                <button type="button" class="btn user-generator-button" (click)="expandAllUsers()" *ngIf="!areAllUsersExapnded">Expand All Users</button>
+                <button type="button" class="btn user-generator-button" (click)="collapseAllUsers()" *ngIf="areAllUsersExapnded">Collapse All Users</button>
             </div>
         </div>
-        <div class="col-md-6"></div>
     </div>
     <ng-container *ngIf="users && users.length > 0 else noUsers">
         <div class="row" *ngFor="let user of users; let i = index;">
