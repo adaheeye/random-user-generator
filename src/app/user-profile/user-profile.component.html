@@ -1,13 +1,18 @@
 <div class="container-fluid px-0">
-    <div class="row">
-        <div class="col-7">
-            <button type="button" class="btn user-generator-button mb-2 ml-2" (click)="removeAllUsers()">Remove All Users</button>
-            <button type="button" class="btn user-generator-button mb-2" (click)="generateUsers()">Generate New Users</button>        </div>
-        <div class="col-5"></div>
+    <div class="row mb-2">
+        <div class="col-md-6 col-xm-12">
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn user-generator-button" (click)="generateUsers()">Reenerate New Users</button>
+                <button type="button" class="btn user-generator-button ml-2" (click)="removeAllUsers()">Remove All Users</button>
+                <button type="button" class="btn user-generator-button ml-2" (click)="expandAllUsers()" *ngIf="!areAllUsersExapnded">Expand All Users</button>
+                <button type="button" class="btn user-generator-button ml-2" (click)="collapseAllUsers()" *ngIf="areAllUsersExapnded">Collapse All Users</button>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
     </div>
     <ng-container *ngIf="users && users.length > 0 else noUsers">
         <div class="row" *ngFor="let user of users; let i = index;">
-            <div class="col-7">
+            <div class="col-md-6 col-xm-12 px-2">
                 <div class="card card-body user-profile" *ngIf="user">
                     <div class="row">
                         <div class="col-4 user-image">
@@ -43,8 +48,14 @@
                                 <div class="col-10">
                                     {{user.dob.age + ' years old'}}</div>
                             </div>
+                            <div class="row">
+                                <div class="col-2">
+                                  <img class="flag" [src]="getUserCountry(user).file_url">
+                                </div>
+                                <div class="col-10">From {{getUserCountry(user).name}}</div>
+                            </div>
                             <div class="row action-buttons">
-                                <div class="col-12 ">
+                                <div class="col-xs-12">
                                     <div class="btn-group" *ngIf="!isUserExpanded(user)">
                                         <button type="button" class="btn btn-info mr-1"
                                             (click)="expandUser(user)">Expand User
@@ -65,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5 pl-0" *ngIf="!!user && user.isExpanded">
+            <div class="col-md-6 col-xm-12 px-2" [hidden]="!user || !user.isExpanded">
                 <div class="card card-body user-profile-detail">
                     <div class="row">
                         <div class="col-1">

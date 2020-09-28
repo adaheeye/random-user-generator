@@ -13,10 +13,11 @@ import { UserProfileService } from './user-profile.service';
 export class UserProfileComponent implements OnInit {
 
   public users: User[];
-  private currentExpandedUser: User;
-  private previousExpandedUser: User;
   public countries: Country[];
   public userCountry: Country;
+  public areAllUsersExapnded = false;
+  private currentExpandedUser: User;
+  private previousExpandedUser: User;
 
   constructor(private userService: UserProfileService, private countriesService: CountriesService) { }
 
@@ -27,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   public load(): void {
     this.getUserProfiles();
     this.getCountries();
+
   }
 
   public getUserProfiles() {
@@ -34,6 +36,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe((users) => {
         if (!!users) {
           this.users = users.results as User[];
+          this.expandUser(this.users[0]);
         }
       });
   }
@@ -43,7 +46,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public expandUser(user: User): void {
-    if (this.previousExpandedUser) {
+    if (this.previousExpandedUser && !this.areAllUsersExapnded) {
       this.previousExpandedUser.isExpanded = false;
     }
     this.currentExpandedUser = user;
@@ -57,7 +60,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public isUserExpanded(user: User): boolean {
-    return user.isExpanded ? true : false;
+    return !!user.isExpanded;
   }
 
   public deleteUser(user: User) {
@@ -70,6 +73,20 @@ export class UserProfileComponent implements OnInit {
 
   public getUserCountry(user: User): Country {
     return this.countries.find((country: Country) => country.alpha2 === user.nat);
+  }
+
+  public collapseAllUsers() {
+    if (this.areAllUsersExapnded) {
+      this.users.forEach((user) => user.isExpanded = false)
+    }
+    this.areAllUsersExapnded = !this.areAllUsersExapnded;
+  }
+
+  public expandAllUsers() {
+    if (!this.areAllUsersExapnded) {
+      this.users.forEach((user) => user.isExpanded = true)
+    }
+    this.areAllUsersExapnded = !this.areAllUsersExapnded;
   }
 
   private getCountries() {
