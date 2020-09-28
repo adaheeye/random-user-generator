@@ -21,6 +21,7 @@
 
     .action-buttons {
         margin-top: 15px;
+        margin-left: auto;
     }
 
     small {
@@ -40,4 +41,16 @@
 .flag {
   width: 18px;
   height: 16px;
+}
+
+@media(max-width: 767px) {
+    button.user-generator-button {
+        padding: 0.0em 0.2em !important;
+        display: inline-block;
+    }
+
+    button.collapse-btn, button.expand-btn, button.remove-btn {
+        padding: 0.2em 0.3em !important;
+        display: inline-block;
+    }
 }

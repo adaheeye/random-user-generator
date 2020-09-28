@@ -21,30 +21,30 @@
                         <div class="col-8">
                             <div class="row">
                                 <div class="col-2">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-user fa-fw"></i>
                                 </div>
                                 <div class="col-10">
                                     {{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="col-2"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div class="col-2"><i class="fas fa-map-marker-alt fa-fw"></i></div>
                                     <div class="col-10">
                                         <small><cite> {{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' + user.nat}}</cite></small>
                                     </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><i class="fas fa-envelope"></i></div>
+                                <div class="col-2"><i class="fas fa-envelope fa-fw"></i></div>
                                 <div class="col-10">{{user.email}}</div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><i class="fas fa-globe"></i></div>
+                                <div class="col-2"><i class="fas fa-globe fa-fw"></i></div>
                                 <div class="col-10"><a
                                         href="#">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-2"><i class="fas fa-birthday-cake"></i></div>
+                                <div class="col-2"><i class="fas fa-birthday-cake fa-fw"></i></div>
                                 <div class="col-10">
                                     {{user.dob.age + ' years old'}}</div>
                             </div>
@@ -57,17 +57,17 @@
                             <div class="row action-buttons">
                                 <div class="col-xs-12">
                                     <div class="btn-group" *ngIf="!isUserExpanded(user)">
-                                        <button type="button" class="btn btn-info mr-1"
+                                        <button type="button" class="btn btn-info expand-btn mr-1"
                                             (click)="expandUser(user)">Expand User
                                         </button>
                                     </div>
                                     <div class="btn-group" *ngIf="isUserExpanded(user)">
-                                        <button type="button" class="btn btn-secondary mr-1"
+                                        <button type="button" class="btn btn-secondary collapse-btn mr-1"
                                             (click)="collapseUser(user)">Collapse
                                             User</button>
                                     </div>
                                     <div class="btn-group">
-                                            <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Remove
+                                            <button type="button" class="btn btn-danger remove-btn" (click)="deleteUser(user)">Remove
                                                 User</button>
                                         </div>
                                 </div>
@@ -79,52 +79,51 @@
             <div class="col-md-6 col-xm-12 px-2" [hidden]="!user || !user.isExpanded">
                 <div class="card card-body user-profile-detail">
                     <div class="row">
-                        <div class="col-1">
-                            <i class="fas fa-user"></i>
+                        <div class="col-1 pr-0">
+                            <i class="fas fa-user fa-fw"></i>
                         </div>
                         <div class="col-11">
                             {{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
                         </div>
                     </div>
                     <div class="row">
-                            <div class="col-1"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="col-1 pr-0"><i class="fas fa-map-marker-alt fa-fw"></i></div>
                             <div class="col-11">
                                 <small><cite> {{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' + user.nat}}</cite></small>
                             </div>
                     </div>
                     <div class="row">
-                        <div class="col-1"><i class="fas fa-envelope"></i></div>
+                        <div class="col-1 pr-0"><i class="fas fa-envelope fa-fw"></i></div>
                         <div class="col-11">{{user.email}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-1">
-                            <i class="fas fa-female" *ngIf="user.gender === 'female'"></i>
-                            <i class="fas fa-male" *ngIf="user.gender === 'male'"></i>
+                        <div class="col-1 pr-0">
+                            <i class="fas fa-female fa-fw" *ngIf="user.gender === 'female'"></i>
+                            <i class="fas fa-male fa-fw" *ngIf="user.gender === 'male'"></i>
                         </div>
                         <div class="col-11">{{user.gender | titlecase}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-1"><i class="fas fa-phone"></i></div>
-                        <div class="col-11">
-                            <div class="row px-0">
-                                <div class="col-6 pr-0">Phone: {{user.phone}}</div>
-                                <div class="col-6 pr-0">Cell: {{user.cell}}</div>
-                            </div>
-                        </div>
+                        <div class="col-1 pr-0"><i class="fas fa-phone fa-fw"></i></div>
+                        <div class="col-11">Phone: {{user.phone}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-1"><i class="fas fa-globe"></i></div>
+                        <div class="col-1 pr-0"><i class="fas fa-mobile-alt fa-fw"></i></div>
+                        <div class="col-11">Cell: {{user.cell}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 pr-0"><i class="fas fa-globe fa-fw"></i></div>
                         <div class="col-11"><a
                                 href="#">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-1"><i class="fas fa-birthday-cake"></i></div>
+                        <div class="col-1 pr-0"><i class="fas fa-birthday-cake fa-fw"></i></div>
                         <div class="col-11">
                             {{' ' + (user.dob.date | date: 'longDate') + ' - ' + user.dob.age + ' years old'}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-1 pr-0">
                           <img class="flag" [src]="getUserCountry(user).file_url">
                         </div>
                         <div class="col-11">From {{getUserCountry(user).name}}</div>
@@ -135,7 +134,7 @@
     </ng-container>
     <ng-template #noUsers>
         <div class="row">
-            <div class="col-7">
+            <div class="col-md-7 col-xs-12">
                 <div class="card card-body user-profile-detail">
                     <span>Sorry, No users found</span>
                 </div>
