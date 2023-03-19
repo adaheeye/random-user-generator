@@ -2,9 +2,18 @@
   <div class="row mb-2">
     <div class="col-12">
       <div class="d-flex justify-content-center">
-        <button mat-raised-button class="mr-1" color="primary" (click)="generateUsers()">Regenerate New Users</button>
-        <button mat-raised-button class="mr-1" color="primary" (click)="removeAllUsers()">Remove All Users</button>
-        <button mat-raised-button class="mr-1" color="primary" (click)="toggleAllUsers()">{{allUsersExpanded ? 'Collapse' : 'Expand'}} All Users</button>
+        <button mat-raised-button class="mr-1" color="primary" (click)="generateUsers()">
+          <span class="fas fa-user-plus mr-1"></span>
+          <span>Regenerate New Users</span>
+        </button>
+        <button mat-raised-button class="mr-1" color="primary" (click)="removeAllUsers()">
+          <span class="fas fa-user-slash mr-1"></span>
+          <span> Remove All Users</span>
+        </button>
+        <button mat-raised-button class="mr-1" color="primary" (click)="toggleAllUsers()">
+          <span class="fas mr-1" [ngClass]="{'fa-angle-double-down': !allUsersExpanded, 'fa-angle-double-up': allUsersExpanded }"></span>
+          <span>{{allUsersExpanded ? 'Collapse' : 'Expand'}} All Users</span>
+        </button>
       </div>
     </div>
   </div>

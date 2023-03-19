@@ -6,7 +6,7 @@
     <div class="col-8">
       <div class="row">
         <div class="col-2">
-          <i class="fa-solid fa-user fa-fw"></i>
+          <i class="fas fa-user fa-fw"></i>
         </div>
         <div class="col-10">
           {{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
@@ -14,7 +14,7 @@
       </div>
       <div class="row">
         <div class="col-2">
-          <i class="fa-solid fa-location-dot fa-fw"></i>
+          <i class="fas fa-map-marker-alt fa-fw"></i>
         </div>
         <div class="col-10">
           <small><cite> {{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' + user.nat}}</cite></small>
@@ -22,13 +22,13 @@
       </div>
       <div class="row">
         <div class="col-2">
-          <i class="fa-solid fa-envelope fa-fw"></i>
+          <i class="fas fa-envelope fa-fw"></i>
         </div>
         <div class="col-10">{{user.email}}</div>
       </div>
       <div class="row">
         <div class="col-2">
-          <i class="fa-solid fa-globe fa-fw"></i>
+          <i class="fas fa-globe fa-fw"></i>
         </div>
         <div class="col-10">
           <a href="#">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
@@ -36,7 +36,7 @@
       </div>
       <div class="row">
         <div class="col-2">
-          <i class="fa-solid fa-cake-candles fa-fw"></i>
+          <i class="fas fa-birthday-cake fa-fw"></i>
         </div>
         <div class="col-10">
           {{user.dob.age + ' years old'}}</div>
@@ -49,8 +49,17 @@
       </div>
       <div class="row action-buttons my-2">
         <div class="col-xs-12">
-          <button mat-raised-button class="mr-1" color="primary" (click)="user.isExpanded = !user.isExpanded">{{user.isExpanded ? 'Collapse' : 'Expand'}} User</button>
-          <button mat-raised-button class="mr-1" color="primary" (click)="deleteUser.emit(user)">Remove User</button>
+          <button mat-raised-button
+                  class="mr-1"
+                  color="primary"
+                  (click)="user.isExpanded = !user.isExpanded">
+            <span class="fas mr-1" [ngClass]="{'fa-chevron-down': !user.isExpanded, 'fa-chevron-up': user.isExpanded }"></span>
+            <span>{{user.isExpanded ? 'Collapse' : 'Expand'}} User</span>
+          </button>
+          <button mat-raised-button class="mr-1" color="primary" (click)="deleteUser.emit(user)">
+            <span class="fas fa-user-minus mr-1"></span>
+            <span>Remove User</span>
+          </button>
         </div>
       </div>
     </div>
