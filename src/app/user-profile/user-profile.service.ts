@@ -10,7 +10,7 @@ export class UserProfileService {
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<any> {
-    return this.http.get(this.resourceUrl)
+    return this.http.get<any>(this.resourceUrl)
       .pipe(map((res: Response) => res));
   }
 }

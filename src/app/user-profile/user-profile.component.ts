@@ -14,9 +14,8 @@ export class UserProfileComponent implements OnInit {
 
   public users: User[];
   public countries: Country[];
-  public userCountry: Country;
-  public areAllUsersExapnded = false;
-  private currentExpandedUser: User;
+  public allUsersExpanded = false;
+  private currentExpandedUser: User | null = null;
   private previousExpandedUser: User;
 
   constructor(private userService: UserProfileService, private countriesService: CountriesService) { }
@@ -42,11 +41,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   public removeAllUsers(): void {
-    this.users = null;
+    this.users = [];
   }
 
   public expandUser(user: User): void {
-    if (this.previousExpandedUser && !this.areAllUsersExapnded) {
+    if (this.previousExpandedUser && !this.allUsersExpanded) {
       this.previousExpandedUser.isExpanded = false;
     }
     this.currentExpandedUser = user;
@@ -71,22 +70,22 @@ export class UserProfileComponent implements OnInit {
     this.getUserProfiles();
   }
 
-  public getUserCountry(user: User): Country {
+  public getUserCountry(user: User): Country | undefined {
     return this.countries.find((country: Country) => country.alpha2 === user.nat);
   }
 
   public collapseAllUsers() {
-    if (this.areAllUsersExapnded) {
+    if (this.allUsersExpanded) {
       this.users.forEach((user) => user.isExpanded = false)
     }
-    this.areAllUsersExapnded = !this.areAllUsersExapnded;
+    this.allUsersExpanded = !this.allUsersExpanded;
   }
 
   public expandAllUsers() {
-    if (!this.areAllUsersExapnded) {
+    if (!this.allUsersExpanded) {
       this.users.forEach((user) => user.isExpanded = true)
     }
-    this.areAllUsersExapnded = !this.areAllUsersExapnded;
+    this.allUsersExpanded = !this.allUsersExpanded;
   }
 
   private getCountries() {

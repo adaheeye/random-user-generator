@@ -8,6 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { UserProfileService } from './user-profile/user-profile.service';
 import { CommonModule } from '@angular/common';
 import { CountriesService } from './country/countries.service';
+import {MatButtonModule} from "@angular/material/button";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CountriesService } from './country/countries.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [UserProfileService, CountriesService],
   bootstrap: [AppComponent]
