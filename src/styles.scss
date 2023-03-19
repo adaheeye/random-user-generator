@@ -50,3 +50,9 @@ footer {
 .user-profile, user-profile-detail {
   border-color: mat.get-color-from-palette($primary, 500, 0.5) !important;
 }
+
+app-user-card {
+  .icon  {
+    color: mat.get-color-from-palette($primary, 900, 1) !important;
+  }
+}
