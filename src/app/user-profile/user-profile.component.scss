@@ -26,24 +26,3 @@
     background-color: #f1f1f1;
     min-height: 230px;
 }
-
-.flag {
-  width: 18px;
-  height: 16px;
-}
-
-@media(max-width: 767px) and (min-width: 366px) {
-    /*button.user-generator-button {
-        padding: 0.0em 0.2em !important;
-    }*/
-
-    /*button.collapse-btn, button.expand-btn, button.remove-btn {
-        padding: 0.2em 0.3em !important;
-    }*/
-}
-
-@media(max-width: 365px) {
-    button.collapse-btn, button.expand-btn, button.remove-btn {
-        padding: 0.0em 0.1em !important;
-    }
-}
