@@ -1,174 +1,29 @@
 <div class="container-fluid px-0">
-    <div class="row mb-2">
-        <div class="col-12">
-            <div class="d-flex justify-content-center">
-              <button mat-raised-button class="mr-1" color="primary" (click)="generateUsers()">Regenerate New Users</button>
-              <button mat-raised-button class="mr-1" color="primary" (click)="removeAllUsers()">Remove All Users</button>
-              <button mat-raised-button class="mr-1" color="primary" (click)="expandAllUsers()" *ngIf="!allUsersExpanded">Expand All Users</button>
-              <button mat-raised-button class="mr-1" color="primary" (click)="collapseAllUsers()" *ngIf="allUsersExpanded">Collapse All Users</button>
-
-<!--                <button type="button" class="btn user-generator-button mr-1" (click)="generateUsers()">Regenerate New Users</button>-->
-<!--                <button type="button" class="btn user-generator-button mr-1" (click)="removeAllUsers()">Remove All Users</button>-->
-<!--                <button type="button" class="btn user-generator-button" (click)="expandAllUsers()" *ngIf="!allUsersExpanded">Expand All Users</button>-->
-<!--                <button type="button" class="btn user-generator-button" (click)="collapseAllUsers()" *ngIf="allUsersExpanded">Collapse All Users</button>-->
-            </div>
-        </div>
+  <div class="row mb-2">
+    <div class="col-12">
+      <div class="d-flex justify-content-center">
+        <button mat-raised-button class="mr-1" color="primary" (click)="generateUsers()">Regenerate New Users</button>
+        <button mat-raised-button class="mr-1" color="primary" (click)="removeAllUsers()">Remove All Users</button>
+        <button mat-raised-button class="mr-1" color="primary" (click)="toggleAllUsers()">{{allUsersExpanded ? 'Collapse' : 'Expand'}} All Users</button>
+      </div>
     </div>
-    <ng-container *ngIf="users && users.length > 0 else noUsers">
-        <div class="row" *ngFor="let user of users; let i = index;">
-            <div class="col-md-6 col-xm-12 px-2">
-                <div class="card card-body user-profile" *ngIf="user">
-                    <div class="row">
-                        <div class="col-4 user-image">
-                            <img [src]="user.picture.large" alt="" class="image" />
-                        </div>
-                        <div class="col-8">
-                            <div class="row">
-                                <div class="col-2">
-                                  <i class="fa-solid fa-user fa-fw"></i>
-                                </div>
-                                <div class="col-10">
-                                    {{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                    <div class="col-2">
-                                      <i class="fa-solid fa-location-dot fa-fw"></i>
-                                    </div>
-                                    <div class="col-10">
-                                        <small><cite> {{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' + user.nat}}</cite></small>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                  <i class="fa-solid fa-envelope fa-fw"></i>
-                                </div>
-                                <div class="col-10">{{user.email}}</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                  <i class="fa-solid fa-globe fa-fw"></i>
-                                </div>
-                                <div class="col-10"><a
-                                        href="#">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                  <i class="fa-solid fa-cake-candles fa-fw"></i>
-                                </div>
-                                <div class="col-10">
-                                    {{user.dob.age + ' years old'}}</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                  <img class="flag" [src]="getUserCountry(user)?.file_url">
-                                </div>
-                                <div class="col-10">From {{getUserCountry(user)?.name}}</div>
-                            </div>
-                            <div class="row action-buttons">
-                                <div class="col-xs-12">
-                                    <div class="btn-group" *ngIf="!isUserExpanded(user)">
-                                      <button mat-button class="mr-1" color="primary" (click)="expandUser(user)">Expand User</button>
-
-<!--                                      <button type="button" class="btn btn-info expand-btn mr-1"-->
-<!--                                            (click)="expandUser(user)">Expand User-->
-<!--                                      </button>-->
-                                    </div>
-                                    <div class="btn-group" *ngIf="isUserExpanded(user)">
-                                      <button mat-button class="mr-1" color="primary" (click)="collapseUser(user)">Collapse User</button>
-
-<!--                                      <button type="button" class="btn btn-secondary collapse-btn mr-1"-->
-<!--                                            (click)="collapseUser(user)">Collapse-->
-<!--                                            User</button>-->
-                                    </div>
-                                    <div class="btn-group">
-                                      <button mat-button class="mr-1" color="primary" (click)="deleteUser(user)">Remove User</button>
-
-<!--                                      <button type="button" class="btn btn-danger remove-btn" (click)="deleteUser(user)">Remove-->
-<!--                                                User</button>-->
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xm-12 px-2" [hidden]="!user || !user.isExpanded">
-                <div class="card card-body user-profile-detail">
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-user fa-fw"></i>
-                        </div>
-                        <div class="col-11">
-                            {{(user.name.title | titlecase) + '. ' + (user.name.last | titlecase)  + ' ' + (user.name.first | titlecase) }}
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-1 pr-0">
-                              <i class="fa-solid fa-location-dot fa-fw"></i>
-                            </div>
-                            <div class="col-11">
-                                <small><cite> {{(user.location.city| titlecase) + ', ' + (user.location.state| titlecase) + ', ' + user.nat}}</cite></small>
-                            </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-envelope fa-fw"></i>
-                        </div>
-                        <div class="col-11">{{user.email}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                            <i class="fa-solid fa-person fa-fw" *ngIf="user.gender === 'female'"></i>
-                            <i class="fa-solid fa-person-dress fa-fw" *ngIf="user.gender === 'male'"></i>
-                        </div>
-                        <div class="col-11">{{user.gender | titlecase}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-phone fa-fw"></i>
-                        </div>
-                        <div class="col-11">Phone: {{user.phone}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-mobile fa-fw"></i>
-                        </div>
-                        <div class="col-11">Cell: {{user.cell}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-globe fa-fw"></i>
-                        </div>
-                        <div class="col-11"><a
-                                href="#">{{' ' + 'www.' + user.name.last + user.name.first + '.com'}}</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <i class="fa-solid fa-cake-candles fa-fw"></i>
-                        </div>
-                        <div class="col-11">
-                            {{' ' + (user.dob.date | date: 'longDate') + ' - ' + user.dob.age + ' years old'}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 pr-0">
-                          <img class="flag" [src]="getUserCountry(user)?.file_url">
-                        </div>
-                        <div class="col-11">From {{getUserCountry(user)?.name}}</div>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <ng-container *ngIf="users && users.length > 0 else noUsers">
+    <div class="row mb-1" *ngFor="let user of users; let i = index;">
+      <div class="col-12 px-2">
+        <app-user-card [user]="user"
+                       [countries]="countries"
+                       (deleteUser)="deleteUser($event)"></app-user-card>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noUsers>
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="card card-body user-profile-detail">
+          <span>Sorry, no users found. Please regenerate new users </span>
         </div>
-    </ng-container>
-    <ng-template #noUsers>
-        <div class="row">
-            <div class="col-md-7 col-xs-12">
-                <div class="card card-body user-profile-detail">
-                    <span>Sorry, No users found</span>
-                </div>
-            </div>
-        </div>
-    </ng-template>
+      </div>
+    </div>
+  </ng-template>
 </div>

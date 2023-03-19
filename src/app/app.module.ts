@@ -11,21 +11,27 @@ import { CountriesService } from './country/countries.service';
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {UserCardComponent} from "./user-card/user-card.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserProfileComponent,
+    UserCardComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    CommonModule,
-    MatButtonModule,
-    BrowserAnimationsModule,
-    MatIconModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        CommonModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatGridListModule,
+        MatToolbarModule
+    ],
   providers: [UserProfileService, CountriesService],
   bootstrap: [AppComponent]
 })

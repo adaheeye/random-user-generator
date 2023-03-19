@@ -1,41 +1,45 @@
-
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import { User } from '../user-profile.model';
-import { Country } from '../country/countries.model'
-import { CountriesService } from 'src/app/country/countries.service'
+import { Country } from '../country/countries.model';
+import { CountriesService } from 'src/app/country/countries.service';
 import { UserProfileService } from './user-profile.service';
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserProfileComponent implements OnInit {
-
+export class UserProfileComponent implements OnInit, OnDestroy {
   public users: User[];
   public countries: Country[];
   public allUsersExpanded = false;
-  private currentExpandedUser: User | null = null;
-  private previousExpandedUser: User;
+  private ngUnsubscribe: Subject<void> = new Subject();
 
-  constructor(private userService: UserProfileService, private countriesService: CountriesService) { }
+  constructor(
+    private userService: UserProfileService,
+    private countriesService: CountriesService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   public ngOnInit() {
-    this.load();
-  }
-
-  public load(): void {
-    this.getUserProfiles();
     this.getCountries();
-
+    this.generateUsers();
   }
 
-  public getUserProfiles() {
+  public ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  public generateUsers() {
     this.userService.getUsers()
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((users) => {
         if (!!users) {
           this.users = users.results as User[];
-          this.expandUser(this.users[0]);
+          this.cdr.markForCheck();
         }
       });
   }
@@ -44,52 +48,18 @@ export class UserProfileComponent implements OnInit {
     this.users = [];
   }
 
-  public expandUser(user: User): void {
-    if (this.previousExpandedUser && !this.allUsersExpanded) {
-      this.previousExpandedUser.isExpanded = false;
-    }
-    this.currentExpandedUser = user;
-    this.previousExpandedUser = this.currentExpandedUser;
-    user.isExpanded = true;
-  }
-
-  public collapseUser(user: User): void {
-    this.currentExpandedUser = null;
-    user.isExpanded = false;
-  }
-
-  public isUserExpanded(user: User): boolean {
-    return !!user.isExpanded;
-  }
-
-  public deleteUser(user: User) {
+  public deleteUser(user: User): void {
     this.users.splice(this.users.indexOf(user), 1);
   }
 
-  public generateUsers(): void {
-    this.getUserProfiles();
-  }
-
-  public getUserCountry(user: User): Country | undefined {
-    return this.countries.find((country: Country) => country.alpha2 === user.nat);
-  }
-
-  public collapseAllUsers() {
-    if (this.allUsersExpanded) {
-      this.users.forEach((user) => user.isExpanded = false)
-    }
+  public toggleAllUsers(): void {
     this.allUsersExpanded = !this.allUsersExpanded;
-  }
-
-  public expandAllUsers() {
-    if (!this.allUsersExpanded) {
-      this.users.forEach((user) => user.isExpanded = true)
-    }
-    this.allUsersExpanded = !this.allUsersExpanded;
+    this.users.forEach((user) => user.isExpanded = this.allUsersExpanded)
   }
 
   private getCountries() {
     this.countriesService.getCountries()
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((countries) => {
         if (!!countries) {
           this.countries = countries as Country[];
