@@ -8,8 +8,8 @@ import { Country } from '../country/countries.model';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent {
-  @Input() user: User;
-  @Input() countries: Country[];
+  @Input() user: User | null = null;
+  @Input() countries: Country[] = [];
   @Output() deleteUser = new EventEmitter<User>();
 
   public getUserCountry(user: User): Country | undefined {

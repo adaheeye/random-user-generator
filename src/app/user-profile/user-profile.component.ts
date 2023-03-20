@@ -12,8 +12,8 @@ import {Subject, takeUntil} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  public users: User[];
-  public countries: Country[];
+  public users: User[] = [];
+  public countries: Country[] = [];
   public allUsersExpanded = false;
   private ngUnsubscribe: Subject<void> = new Subject();
 
