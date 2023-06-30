@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../user-profile.model';
 import { Country } from '../country/countries.model';
 
@@ -11,6 +11,7 @@ export class UserCardComponent {
   @Input() user: User | null = null;
   @Input() countries: Country[] = [];
   @Output() deleteUser = new EventEmitter<User>();
+  @Input() public isMobile: boolean = false;
 
   public getUserCountry(user: User): Country | undefined {
     return this.countries.find(

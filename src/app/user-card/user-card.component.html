@@ -1,7 +1,7 @@
 <div class="card card-body user-profile" *ngIf="user">
   <div class="row">
     <div class="col-4 user-image">
-      <img [src]="user.picture.large" alt="" class="image" />
+      <img [src]="isMobile ? user.picture.medium : user.picture.large" alt="" class="image" />
     </div>
     <div class="col-8">
       <div class="row">
@@ -47,21 +47,22 @@
         </div>
         <div class="col-10">From {{getUserCountry(user)?.name}}</div>
       </div>
-      <div class="row action-buttons my-2">
-        <div class="col-xs-12">
-          <button mat-raised-button
-                  class="mr-1"
-                  color="primary"
-                  (click)="user.isExpanded = !user.isExpanded">
-            <span class="fas mr-1" [ngClass]="{'fa-chevron-down': !user.isExpanded, 'fa-chevron-up': user.isExpanded }"></span>
-            <span>{{user.isExpanded ? 'Collapse' : 'Expand'}} User</span>
-          </button>
-          <button mat-raised-button class="mr-1" color="primary" (click)="deleteUser.emit(user)">
-            <span class="fas fa-user-minus mr-1"></span>
-            <span>Remove User</span>
-          </button>
-        </div>
-      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center my-2">
+    <div>
+      <button mat-raised-button
+              class="mr-1"
+              color="primary"
+              [ngClass]="{'small-button': isMobile}"
+              (click)="user.isExpanded = !user.isExpanded">
+        <span class="fas mr-1" [ngClass]="{'fa-chevron-down': !user.isExpanded, 'fa-chevron-up': user.isExpanded }"></span>
+        <span>{{user.isExpanded ? 'Collapse' : 'Expand'}} User</span>
+      </button>
+      <button mat-raised-button class="mr-1" [ngClass]="{'small-button': isMobile}" color="primary" (click)="deleteUser.emit(user)">
+        <span class="fas fa-user-minus mr-1"></span>
+        <span>Remove User</span>
+      </button>
     </div>
   </div>
   <div class="row" *ngIf="user.isExpanded">
