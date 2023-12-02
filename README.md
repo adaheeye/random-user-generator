@@ -3,7 +3,7 @@
 This application generates 10 random users' data using Randomuser.me-Node API. You can regenerate new users, remove all users, expand or collapse a single user, expand all users, or collapse all users.
 
 ## Demo
-[Check out the live app here!](https://abdirahim888.github.io/random-user-generator/)
+[Check out the live app here!](https://adaheeye.github.io/random-user-generator/)
 
 ## Installation
 
